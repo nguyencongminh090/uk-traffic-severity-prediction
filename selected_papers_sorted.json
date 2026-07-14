@@ -1,0 +1,509 @@
+[
+  {
+    "title": "Machine learning approaches to traffic accident severity prediction: Addressing class imbalance",
+    "authors": [
+      "Mohammad Amin Amiri",
+      "Saeid Afshari",
+      "Al\u00ec Soltani"
+    ],
+    "year": 2025,
+    "venue": "Machine Learning with Applications",
+    "doi": "https://doi.org/10.1016/j.mlwa.2025.100792",
+    "abstract": "Road traffic injuries continue to pose a significant public health challenge in Australia, with pedestrians representing one of the most vulnerable road user groups. Accurate prediction of injury severity, particularly fatal outcomes, is essential for improving road safety interventions and resource allocation. This study applies advanced machine learning techniques to predict pedestrian crash severity using national hospitalization and mortality data collected from 2011 to 2021. The analysis focuses on addressing class imbalance\u2014a common issue in injury data\u2014by evaluating the impact of several data balancing methods, including SMOTE, ADASYN, Random Oversampling (ROS), and Threshold Moving. We implement and compare four supervised learning algorithms: Logistic Regression, Support Vector Machine (SVM), Decision Tree, and XGBoost. Model performance is assessed using F1-score and macro-accuracy, with a focus on the minority (fatality) class. Results show that XGBoost combined with Threshold Moving achieves the highest performance, yielding an F1-score of 72% for fatality classification and a macro-accuracy of 84%. Additionally, feature importance analysis using SHAP values reveals age, gender, road user type, and crash location as key predictors of injury severity. The study highlights the critical role of data balancing strategies in enhancing predictive accuracy for rare but high-impact outcomes. These findings provide actionable insights for transport authorities and policymakers seeking to develop data-driven, targeted safety measures to protect pedestrians and reduce the severity of crash outcomes.",
+    "citationCount": 4,
+    "search_query": "class imbalance traffic severity SMOTE",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Addresses class imbalance, highly relevant to our data preprocessing.",
+    "_section": "Handling Class Imbalance in Traffic Analysis",
+    "cite_key": "amiri2025"
+  },
+  {
+    "title": "Addressing imbalanced data in predicting injury severity after traffic crashes: A comparative analysis of machine learning models",
+    "authors": [
+      "Sadjad Bazarnovi",
+      "Abolfazl Mohammadian"
+    ],
+    "year": 2024,
+    "venue": "Procedia Computer Science",
+    "doi": "https://doi.org/10.1016/j.procs.2024.05.192",
+    "abstract": "Road traffic crashes are a significant public health concern, leading to substantial human and financial losses. Accurately predicting injury severity is crucial for optimizing rescue efforts and saving lives. This study utilizes various Machine Learning (ML) algorithms, such as Random Forest, Logistic Regression, XGBoost, and Support Vector Machine (SVM), to predict crash severity. The dataset spans from 2015 to 2023, comprising crash data from the City of Chicago, featuring a highly imbalanced ratio of non-severe to severe incidents (1000 to 1). To address class imbalance challenges, the study evaluates various data sampling methods, including Oversampling, Undersampling, and Hybridsampling. Model performance is assessed using AUC-ROC and recall to account for accuracy limitations in imbalanced datasets. Results reveal the inefficacy of conventional data sampling methods where data is highly imbalanced. Consequently, a novel approach was adopted, involving the random removal of observations before applying data sampling methods, leading to a significant improvement in model performance. SVM-SMOTE and ClusterCentroid emerge as the most effective resampling methods. Notably, among all ML models, SVM demonstrates the best overall performance. The final findings of this study aim to assist emergency responders in quickly evaluating the severity of an incident upon receiving a report.",
+    "citationCount": 11,
+    "search_query": "class imbalance traffic severity SMOTE",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Addresses class imbalance, highly relevant to our data preprocessing.",
+    "_section": "Handling Class Imbalance in Traffic Analysis",
+    "cite_key": "bazarnovi2024"
+  },
+  {
+    "title": "A Space\u2013Time Multivariate Bayesian Model to Analyse Road Traffic Accidents by Severity",
+    "authors": [
+      "Areti Boulieri",
+      "Silvia Liverani",
+      "Kees de Hoogh",
+      "Marta Blangiardo"
+    ],
+    "year": 2016,
+    "venue": "Journal of the Royal Statistical Society Series A (Statistics in Society)",
+    "doi": "https://doi.org/10.1111/rssa.12178",
+    "abstract": "Summary The paper investigates the dependences between levels of severity of road traffic accidents, accounting at the same time for spatial and temporal correlations. The study analyses road traffic accidents data at ward level in England over the period 2005\u20132013. We include in our model multivariate spatially structured and unstructured effects to capture the dependences between severities, within a Bayesian hierarchical formulation. We also include a temporal component to capture the time effects and we carry out an extensive model comparison. The results show important associations in both spatially structured and unstructured effects between severities, and a downward temporal trend is observed for low and high levels of severity. Maps of posterior accident rates indicate elevated risk within big cities for accidents of low severity and in suburban areas in the north and on the southern coast of England for accidents of high severity. The posterior probability of extreme rates is used to suggest the presence of hot spots in a public health perspective.",
+    "citationCount": 55,
+    "search_query": "UK road accidents severity classification",
+    "source": "OpenAlex",
+    "_relevance": "Medium",
+    "_justification": "Relevant to traffic severity prediction.",
+    "_section": "Traffic Accident Severity Prediction",
+    "cite_key": "boulieri2016"
+  },
+  {
+    "title": "SMOTE: Synthetic Minority Over-sampling Technique",
+    "authors": [
+      "Nitesh V. Chawla",
+      "Kevin W. Bowyer",
+      "Lawrence Hall",
+      "W. Philip Kegelmeyer"
+    ],
+    "year": 2002,
+    "venue": "Journal of Artificial Intelligence Research",
+    "doi": "https://doi.org/10.1613/jair.953",
+    "abstract": "An approach to the construction of classifiers from imbalanced datasets is described. A dataset is imbalanced if the classification categories are not approximately equally represented. Often real-world data sets are predominately composed of ``normal'' examples with only a small percentage of ``abnormal'' or ``interesting'' examples. It is also the case that the cost of misclassifying an abnormal (interesting) example as a normal example is often much higher than the cost of the reverse error. Under-sampling of the majority (normal) class has been proposed as a good means of increasing the sensitivity of a classifier to the minority class. This paper shows that a combination of our method of over-sampling the minority (abnormal) class and under-sampling the majority (normal) class can achieve better classifier performance (in ROC space) than only under-sampling the majority class. This paper also shows that a combination of our method of over-sampling the minority class and under-sampling the majority class can achieve better classifier performance (in ROC space) than varying the loss ratios in Ripper or class priors in Naive Bayes. Our method of over-sampling the minority class involves creating synthetic minority class examples. Experiments are performed using C4.5, Ripper and a Naive Bayes classifier. The method is evaluated using the area under the Receiver Operating Characteristic curve (AUC) and the ROC convex hull strategy.",
+    "citationCount": 31401,
+    "search_query": "SMOTE foundational",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Foundational methodology paper.",
+    "_section": "Methodology / Gradient Boosting and Ensemble Methods",
+    "cite_key": "chawla2002"
+  },
+  {
+    "title": "XGBoost",
+    "authors": [
+      "Tianqi Chen",
+      "Carlos Guestrin"
+    ],
+    "year": 2016,
+    "venue": null,
+    "doi": "https://doi.org/10.1145/2939672.2939785",
+    "abstract": "Tree boosting is a highly effective and widely used machine learning method. In this paper, we describe a scalable end-to-end tree boosting system called XGBoost, which is used widely by data scientists to achieve state-of-the-art results on many machine learning challenges. We propose a novel sparsity-aware algorithm for sparse data and weighted quantile sketch for approximate tree learning. More importantly, we provide insights on cache access patterns, data compression and sharding to build a scalable tree boosting system. By combining these insights, XGBoost scales beyond billions of examples using far fewer resources than existing systems.",
+    "citationCount": 49290,
+    "search_query": "XGBoost foundational",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Foundational methodology paper.",
+    "_section": "Methodology / Gradient Boosting and Ensemble Methods",
+    "cite_key": "chen2016"
+  },
+  {
+    "title": "Traffic accident severity prediction based on an enhanced MSCPO-XGBoost hybrid model",
+    "authors": [
+      "Fei Chen",
+      "Xiang Qun Liu",
+      "Jian Yang",
+      "Xu Kang Liu",
+      "Jing Hui",
+      "Jia Chen",
+      "Hua Yu Xiao"
+    ],
+    "year": 2025,
+    "venue": "Scientific Reports",
+    "doi": "https://doi.org/10.1038/s41598-025-00797-7",
+    "abstract": "Road traffic accidents pose a significant threat to public safety in China. This study proposes a novel severity prediction framework based on a Modified Stochastic Crested Porcupine Optimizer (MSCPO) combined with the XGBoost algorithm. The model was trained on 4287 accident cases from China's National Automobile Accident In-depth Investigation System (NAIS), collected between 2018 and 2023. The dataset was first divided into training and testing sets, and the Synthetic Minority Oversampling Technique (SMOTE) was applied only to the training set to address class imbalance. The MSCPO algorithm was then employed to optimize XGBoost hyperparameters. Comparative experiments demonstrate that the MSCPO-XGBoost model outperforms baseline algorithms including SVM, Random Forest, BP Neural Network, and CNN, achieving an accuracy of 83.57%, a recall of 85.23%, an F1-score of 84.30%, and an AUC of 92.82%. To enhance interpretability, SHAP analysis was used to identify key predictors such as engine displacement, vehicle mass, traffic signals, and driver age. The findings offer valuable guidance for traffic safety policymaking and demonstrate the potential of integrating real-time severity prediction into intelligent traffic management systems.",
+    "citationCount": 16,
+    "search_query": "class imbalance traffic severity SMOTE",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Directly uses target boosting methods for comparison.",
+    "_section": "Gradient Boosting and Ensemble Methods for Tabular Data",
+    "cite_key": "chen2025"
+  },
+  {
+    "title": "Dynamic Spatial-Temporal Graph Convolutional Neural Networks for Traffic Forecasting",
+    "authors": [
+      "Zulong Diao",
+      "Xin Wang",
+      "Dafang Zhang",
+      "Yingru Liu",
+      "Kun Xie",
+      "Shaoyao He"
+    ],
+    "year": 2019,
+    "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "doi": "https://doi.org/10.1609/aaai.v33i01.3301890",
+    "abstract": "Graph convolutional neural networks (GCNN) have become an increasingly active field of research. It models the spatial dependencies of nodes in a graph with a pre-defined Laplacian matrix based on node distances. However, in many application scenarios, spatial dependencies change over time, and the use of fixed Laplacian matrix cannot capture the change. To track the spatial dependencies among traffic data, we propose a dynamic spatio-temporal GCNN for accurate traffic forecasting. The core of our deep learning framework is the finding of the change of Laplacian matrix with a dynamic Laplacian matrix estimator. To enable timely learning with a low complexity, we creatively incorporate tensor decomposition into the deep learning framework, where real-time traffic data are decomposed into a global component that is stable and depends on long-term temporal-spatial traffic relationship and a local component that captures the traffic fluctuations. We propose a novel design to estimate the dynamic Laplacian matrix of the graph with above two components based on our theoretical derivation, and introduce our design basis. The forecasting performance is evaluated with two realtime traffic datasets. Experiment results demonstrate that our network can achieve up to 25% accuracy improvement.",
+    "citationCount": 321,
+    "search_query": "spatial feature engineering traffic accidents",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Provides context on spatial feature engineering.",
+    "_section": "Spatial Feature Engineering in Predictive Modeling",
+    "cite_key": "diao2019"
+  },
+  {
+    "title": "Handling Imbalanced Data in Road Crash Severity Prediction by Machine Learning Algorithms",
+    "authors": [
+      "Nicholas Fiorentini",
+      "Massimo Losa"
+    ],
+    "year": 2020,
+    "venue": "Infrastructures",
+    "doi": "https://doi.org/10.3390/infrastructures5070061",
+    "abstract": "Crash severity is undoubtedly a fundamental aspect of a crash event. Although machine learning algorithms for predicting crash severity have recently gained interest by the academic community, there is a significant trend towards neglecting the fact that crash datasets are acutely imbalanced. Overlooking this fact generally leads to weak classifiers for predicting the minority class (crashes with higher severity). In this paper, in order to handle imbalanced accident datasets and provide a better prediction for the minority class, the random undersampling the majority class (RUMC) technique is used. By employing an imbalanced and a RUMC-based balanced training set, we propose the calibration, validation, and evaluation of four different crash severity predictive models, including random tree, k-nearest neighbor, logistic regression, and random forest. Accuracy, true positive rate (recall), false positive rate, true negative rate, precision, F1-score, and the confusion matrix have been calculated to assess the performance. Outcomes show that RUMC-based models provide an enhancement in the reliability of the classifiers for detecting fatal crashes and those causing injury. Indeed, in imbalanced models, the true positive rate for predicting fatal crashes and those causing injury spans from 0% (logistic regression) to 18.3% (k-nearest neighbor), while for the RUMC-based models, it spans from 52.5% (RUMC-based logistic regression) to 57.2% (RUMC-based k-nearest neighbor). Organizations and decision-makers could make use of RUMC and machine learning algorithms in predicting the severity of a crash occurrence, managing the present, and planning the future of their works.",
+    "citationCount": 160,
+    "search_query": "UK road accidents severity classification",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Addresses class imbalance, highly relevant to our data preprocessing.",
+    "_section": "Handling Class Imbalance in Traffic Analysis",
+    "cite_key": "fiorentini2020"
+  },
+  {
+    "title": "Older Pedestrian Traffic Crashes Severity Analysis Based on an Emerging Machine Learning XGBoost",
+    "authors": [
+      "Manze Guo",
+      "Zhenzhou Yuan",
+      "Bruce N. Janson",
+      "Peng Yong-xin",
+      "Yang Yang",
+      "Wencheng Wang"
+    ],
+    "year": 2021,
+    "venue": "Sustainability",
+    "doi": "https://doi.org/10.3390/su13020926",
+    "abstract": "Older pedestrians are vulnerable on the streets and at significant risk of injury or death when involved in crashes. Pedestrians\u2019 safety is critical for roadway agencies to consider and improve, especially older pedestrians aged greater than 65 years old. To better protect the older pedestrian group, the factors that contribute to the older crashes need to be analyzed deeply. Traditional modeling approaches such as Logistic models for data analysis may lead to modeling distortions due to the independence assumptions. In this study, Extreme Gradient Boosting (XGBoost), is used to model the classification problem of three different levels of severity of older pedestrian traffic crashes from crash data in Colorado, US. Further, Shapley Additive explanations (SHAP) are implemented to interpret the XGBoost model result and analyze each feature\u2019s importance related to the levels of older pedestrian crashes. The interpretation results show that the driver characteristic, older pedestrian characteristics, and vehicle movement are the most important factors influencing the probability of the three different severity levels. Those results investigate each severity level\u2019s correlation factors, which can inform the department of traffic management and the department of road infrastructure to protect older pedestrians by controlling or managing some of those significant features.",
+    "citationCount": 97,
+    "search_query": "gradient boosting traffic severity",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Directly uses target boosting methods for comparison.",
+    "_section": "Gradient Boosting and Ensemble Methods for Tabular Data",
+    "cite_key": "guo2021"
+  },
+  {
+    "title": "Classification of motor vehicle crash injury severity: A hybrid approach for imbalanced data",
+    "authors": [
+      "Heejin Jeong",
+      "Youngchan Jang",
+      "Patrick Bowman",
+      "Neda Masoud"
+    ],
+    "year": 2018,
+    "venue": "Accident Analysis & Prevention",
+    "doi": "https://doi.org/10.1016/j.aap.2018.08.025",
+    "abstract": "",
+    "citationCount": 143,
+    "search_query": "gradient boosting traffic severity",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Addresses class imbalance, highly relevant to our data preprocessing.",
+    "_section": "Handling Class Imbalance in Traffic Analysis",
+    "cite_key": "jeong2018"
+  },
+  {
+    "title": "Spatiotemporal Clustering and Analysis of Road Accident Hotspots by Exploiting GIS Technology and Kernel Density Estimation",
+    "authors": [
+      "Syed Saqib Ali Kazmi",
+      "Mehreen Ahmed",
+      "Rafia Mumtaz",
+      "Zahid Anwar"
+    ],
+    "year": 2020,
+    "venue": "The Computer Journal",
+    "doi": "https://doi.org/10.1093/comjnl/bxz158",
+    "abstract": "Abstract Traffic accidents are a common problem in any transportation network. Road traffic accidents are predicted to be the seventh leading cause of deaths by the year 2030. Recently research in the integration of geographical information systems (GIS) for analyzing accidents, road design and safety management has increased considerably. The perpetual use of GIS tools, lead this study to propose the identification of accident hotspots by exploiting GIS technology coupled with kernel density estimation (KDE). This paper proposes the use of KDE technique and GIS technology to automatically identify the accident hotspots using UK as the study area. Analysis shows that most of the accidents occur when there is a 30 mph speed limit, a weekend, in the evening time, during the months of October and November, on the single carriageway, where there is \u2018T\u2019 or staggered junction and on \u2018A\u2019 road class. Moreover, this study also proposed techniques to classify the accident severity that is classified as either fatal, serious or slight. The driver behavior and environmental features achieved an accuracy up to 85% on the severity classification with Bagging technique. Further, the shortcomings, limitations and recommendations for future work are also identified.",
+    "citationCount": 49,
+    "search_query": "UK road accidents severity classification",
+    "source": "OpenAlex",
+    "_relevance": "Medium",
+    "_justification": "Relevant to traffic severity prediction.",
+    "_section": "Traffic Accident Severity Prediction",
+    "cite_key": "kazmi2020"
+  },
+  {
+    "title": "LightGBM: A Highly Efficient Gradient Boosting Decision Tree",
+    "authors": [
+      "Guolin Ke",
+      "Qi Meng",
+      "Thomas Finley",
+      "Taifeng Wang",
+      "Wei Chen",
+      "Weidong Ma",
+      "Qiwei Ye",
+      "Tie\u2010Yan Liu"
+    ],
+    "year": 2017,
+    "venue": "HAL (Le Centre pour la Communication Scientifique Directe)",
+    "doi": null,
+    "abstract": "Gradient Boosting Decision Tree (GBDT) is a popular machine learning algorithm, and has quite a few effective implementations such as XGBoost and pGBRT. Although many engineering optimizations have been adopted in these implementations, the efficiency and scalability are still unsatisfactory when the feature dimension is high and data size is large. A major reason is that for each feature, they need to scan all the data instances to estimate the information gain of all possible split points, which is very time consuming. To tackle this problem, we propose two novel techniques: Gradient-based One-Side Sampling (GOSS) and Exclusive Feature Bundling (EFB). With GOSS, we exclude a significant proportion of data instances with small gradients, and only use the rest to estimate the information gain. We prove that, since the data instances with larger gradients play a more important role in the computation of information gain, GOSS can obtain quite accurate estimation of the information gain with a much smaller data size. With EFB, we bundle mutually exclusive features (i.e., they rarely take nonzero values simultaneously), to reduce the number of features. We prove that finding the optimal bundling of exclusive features is NP-hard, but a greedy algorithm can achieve quite good approximation ratio (and thus can effectively reduce the number of features without hurting the accuracy of split point determination by much). We call our new GBDT implementation with GOSS and EFB LightGBM. Our experiments on multiple public datasets show that, LightGBM speeds up the training process of conventional GBDT by up to over 20 times while achieving almost the same accuracy.",
+    "citationCount": 9487,
+    "search_query": "LightGBM foundational",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Foundational methodology paper.",
+    "_section": "Methodology / Gradient Boosting and Ensemble Methods",
+    "cite_key": "ke2017"
+  },
+  {
+    "title": "Predicting of the Severity of Car Traffic Accidents on a Highway Using Light Gradient Boosting Model",
+    "authors": [
+      "Hyun-Mi Lee",
+      "Gyoseok JEON",
+      "Jeong-Ah Jang"
+    ],
+    "year": 2020,
+    "venue": "The Journal of the Korea institute of electronic communication sciences",
+    "doi": "https://doi.org/10.13067/jkiecs.2020.15.6.1123",
+    "abstract": "",
+    "citationCount": 4,
+    "search_query": "gradient boosting traffic severity",
+    "source": "OpenAlex",
+    "_relevance": "Medium",
+    "_justification": "Relevant to traffic severity prediction.",
+    "_section": "Traffic Accident Severity Prediction",
+    "cite_key": "lee2020"
+  },
+  {
+    "title": "Analysis and visualization of accidents severity based on LightGBM-TPE",
+    "authors": [
+      "Kun Li",
+      "Haocheng Xu",
+      "Xiao Liu"
+    ],
+    "year": 2022,
+    "venue": "Chaos Solitons & Fractals",
+    "doi": "https://doi.org/10.1016/j.chaos.2022.111987",
+    "abstract": "In recent years, road traffic accidents, as a leading cause of accidental deaths, have been attracting more and more attention across several disciplines. Notably, the feature study on accidents severity can help exactly identify causality between different risk factors and road accidents, thereby substantially improving road traffic safety. Meanwhile, the application of data visualization to traffic safety investigations is still lacking. Motivated by this, we incorporate the visualization method into machine learning to analyze the traffic accidents data of the UK in 2017. A hybrid algorithm, namely Light Gradient Boosting Machine-Tree-structured Parzen Estimator (LightGBM-TPE) is proposed. Compared with other typical machine learning algorithms, it performs better in terms of the metrics f1,accuracy, recall and precision. Using LightGBM-TPE to calculate the SHAP value of each feature, we find that \u201cLongitude\u201d, \u201cLatitude\u201d, \u201cHour\u201d and \u201cDay_of_Week\u201d are four risk factors most closely related with accident severity. Visualization for the data further verifies this conclusion. Overall, our research tries to explore an innovative way to understand and evaluate feature importance of road traffic accidents, which can help suggest effective solutions to improve traffic safety.",
+    "citationCount": 102,
+    "search_query": "UK road accidents severity classification",
+    "source": "OpenAlex",
+    "_relevance": "Medium",
+    "_justification": "Relevant to traffic severity prediction.",
+    "_section": "Traffic Accident Severity Prediction",
+    "cite_key": "li2022"
+  },
+  {
+    "title": "Classification of truck-involved crash severity: Dealing with missing, imbalanced, and high dimensional safety data",
+    "authors": [
+      "Seyed Iman Mohammadpour",
+      "Majid Khedmati",
+      "Mohammad Javad Hassan Zada"
+    ],
+    "year": 2023,
+    "venue": "PLoS ONE",
+    "doi": "https://doi.org/10.1371/journal.pone.0281901",
+    "abstract": "While the cost of road traffic fatalities in the U.S. surpasses $240 billion a year, the availability of high-resolution datasets allows meticulous investigation of the contributing factors to crash severity. In this paper, the dataset for Trucks Involved in Fatal Accidents in 2010 (TIFA 2010) is utilized to classify the truck-involved crash severity where there exist different issues including missing values, imbalanced classes, and high dimensionality. First, a decision tree-based algorithm, the Synthetic Minority Oversampling Technique (SMOTE), and the Random Forest (RF) feature importance approach are employed for missing value imputation, minority class oversampling, and dimensionality reduction, respectively. Afterward, a variety of classification algorithms, including RF, K-Nearest Neighbors (KNN), Multi-Layer Perceptron (MLP), Gradient-Boosted Decision Trees (GBDT), and Support Vector Machine (SVM) are developed to reveal the influence of the introduced data preprocessing framework on the output quality of ML classifiers. The results show that the GBDT model outperforms all the other competing algorithms for the non-preprocessed crash data based on the G-mean performance measure, but the RF makes the most accurate prediction for the treated dataset. This finding indicates that after the feature selection is conducted to alleviate the computational cost of the machine learning algorithms, bagging (bootstrap aggregating) of decision trees in RF leads to a better model rather than boosting them via GBDT. Besides, the adopted feature importance approach decreases the overall accuracy by only up to 5% in most of the estimated models. Moreover, the worst class recall value of the RF algorithm without prior oversampling is only 34.4% compared to the corresponding value of 90.3% in the up-sampled model which validates the proposed multi-step preprocessing scheme. This study also identifies the temporal and spatial (roadway) attributes, as well as crash characteristics, and Emergency Medical Service (EMS) as the most critical factors in truck crash severity.",
+    "citationCount": 37,
+    "search_query": "class imbalance traffic severity SMOTE",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Addresses class imbalance, highly relevant to our data preprocessing.",
+    "_section": "Handling Class Imbalance in Traffic Analysis",
+    "cite_key": "mohammadpour2023"
+  },
+  {
+    "title": "AI-based prediction of traffic crash severity for improving road safety and transportation efficiency",
+    "authors": [
+      "Ayman Mohamed Mostafa",
+      "Bader Aldughayfiq",
+      "Mayada Tarek",
+      "Alaa Alaerjan",
+      "Hisham Allahem",
+      "Murtada K. Elbashir",
+      "Mohamed Ezz",
+      "Eslam Hamouda"
+    ],
+    "year": 2025,
+    "venue": "Scientific Reports",
+    "doi": "https://doi.org/10.1038/s41598-025-10970-7",
+    "abstract": "Ensuring safe transportation requires a comprehensive understanding of driving behaviors and road safety to mitigate traffic crashes, reduce risks and enhance mobility. This study introduces an AI-driven machine learning (ML) framework for traffic crash severity prediction, utilizing a large-scale dataset of over 2.26 million records. By integrating human, crash-specific, and vehicle-related factors, the model improves predictive accuracy and reliability. The methodology incorporates feature engineering, clustering techniques such as K-Means and HDBSCAN, with oversampling methods such as RandomOverSampler, SMOTE, Borderline-SMOTE, and ADASYN to address class imbalance, along with Correlation-Based Feature Selection (CFS) and Recursive Feature Elimination (RFE) for optimal feature selection. Among the evaluated classifiers, the Extra Trees (ET Classifier) ensemble model demonstrated superior performance, achieving 96.19% accuracy and an F1-score (macro) of 95.28%, ensuring a well-balanced prediction system. The proposed framework provides a scalable, AI-powered solution for traffic safety, offering actionable insights for intelligent transportation systems (ITS) and accident prevention strategies. By leveraging advanced ML and feature selection techniques, this approach enhances traffic risk assessment and enables data-driven decision-making.",
+    "citationCount": 29,
+    "search_query": "class imbalance traffic severity SMOTE",
+    "source": "OpenAlex",
+    "_relevance": "Medium",
+    "_justification": "Relevant to traffic severity prediction.",
+    "_section": "Traffic Accident Severity Prediction",
+    "cite_key": "mostafa2025"
+  },
+  {
+    "title": "Predicting traffic crash severity using hybrid of balanced bagging classification and light gradient boosting machine",
+    "authors": [
+      "Jovial Niyogisubizo",
+      "Lyuchao Liao",
+      "Fumin Zou",
+      "Guangjie Han",
+      "Eric Nziyumva",
+      "Ben Li",
+      "Yuyuan Lin"
+    ],
+    "year": 2023,
+    "venue": "Intelligent Data Analysis",
+    "doi": "https://doi.org/10.3233/ida-216398",
+    "abstract": "Accident severity prediction is a hot topic of research aimed at ensuring road safety as well as taking precautionary measures for anticipated future road crashes. In the past decades, both classical statistical methods and machine learning algorithms have been used to predict traffic crash severity. However, most of these models suffer from several drawbacks including low accuracy, and lack of interpretability for people. To address these issues, this paper proposed a hybrid of Balanced Bagging Classification (BBC) and Light Gradient Boosting Machine (LGBM) to improve the accuracy of crash severity prediction and eliminate the issues of bias and variance. To the best of the author\u2019s knowledge, this is one of the pioneer studies which explores the application of BBC-LGBM to predict traffic crash severity. On the accident dataset of Great Britain (UK) from 2013 to 2019, the proposed model has demonstrated better performance when compared with other models such as Gaussian Na\u00efve Bayes (GNB), Support vector machines (SVM), and Random Forest (RF). More specifically, the proposed model managed to achieve better performance among all metrics for the testing dataset (accuracy = 77.7%, precision = 75%, recall = 73%, F1-Score = 68%). Moreover, permutation importance is used to interpret the results and analyze the importance of each factor influencing crash severity. The accuracy-enhanced model is significant to several stakeholders including drivers for early alarm and government departments, insurance companies, and even hospitals for the services concerned about human lives and property damage in road crashes.",
+    "citationCount": 10,
+    "search_query": "gradient boosting traffic severity",
+    "source": "OpenAlex",
+    "_relevance": "Medium",
+    "_justification": "Relevant to traffic severity prediction.",
+    "_section": "Traffic Accident Severity Prediction",
+    "cite_key": "niyogisubizo2023"
+  },
+  {
+    "title": "Evaluating the effectiveness of machine learning techniques in forecasting the severity of traffic accidents",
+    "authors": [
+      "Izuchukwu Chukwuma Obasi",
+      "Chizubem Benson"
+    ],
+    "year": 2023,
+    "venue": "Heliyon",
+    "doi": "https://doi.org/10.1016/j.heliyon.2023.e18812",
+    "abstract": "Traffic accidents pose a significant public safety concern, leading to numerous injuries and fatalities worldwide. Predicting the severity of these accidents is crucial for developing effective road safety measures and reducing casualties. This paper proposes an analytic framework that utilizes machine learning models, including Naive Bayes, Random Forest, Logistic Regression, and Artificial Neural Networks, to predict the severity of traffic accidents based on contributing factors. This study analyzed ten years of UK traffic accident data (2005-2014, N = 2,047,256) to develop and compare different ML models. Results show that the proposed Random Forest and Logistic Regression models achieved an 87% overall prediction accuracy, outperforming Naive Bayes (80%) and Artificial Neural Networks (80%). By employing Random Forest-based feature importance analysis, the study identified Engine Capacity, Age of the vehicle, make of vehicle, Age of the driver, vehicle manoeuvre, daytime, and 1st road class as the most sensitive variables influencing traffic accident severity prediction. Additionally, the suggested RF model outperformed most existing models, attaining a remarkable overall accuracy and superior predictive performance across various injury severity classes. The findings have significant implications for developing efficient road safety measures and enhancing the current traffic safety system. The proposed framework and models can be adapted to various datasets to achieve accurate and effective predictions of traffic accident severity, serving as a valuable reference for implementing traffic accident management and control measures. Future research could extend the proposed framework to datasets containing Casualty Accident information to further improve the accuracy of injury severity prediction.",
+    "citationCount": 56,
+    "search_query": "traffic accident severity prediction machine learning",
+    "source": "OpenAlex",
+    "_relevance": "Medium",
+    "_justification": "Relevant to traffic severity prediction.",
+    "_section": "Traffic Accident Severity Prediction",
+    "cite_key": "obasi2023"
+  },
+  {
+    "title": "Effectiveness of Data Imbalance Treatment in Weather-Related Crash Severity Analysis",
+    "authors": [
+      "Abimbola Ogungbire",
+      "Srinivas S. Pulugurtha"
+    ],
+    "year": 2024,
+    "venue": "Transportation Research Record Journal of the Transportation Research Board",
+    "doi": "https://doi.org/10.1177/03611981241239962",
+    "abstract": "Accurate predictive modeling is often hindered by the prevalent issue of class imbalance within weather-related crash datasets. To address this critical challenge, this study introduces a novel and tailored synthetic data generation technique aimed at effectively handling nominal predictors specific to weather-related crash cases in North Carolina. Data treatment techniques such as the synthetic minority over-sampling technique-nominal (SMOTE-N) and adaptive synthetic-nominal (ADASYN-N) were investigated in this study. A comprehensive comparison of these data treatment techniques is conducted using two prominent machine learning models: the bagging algorithm (random forest [RF]) and the boosting algorithm (extreme gradient boosting [XGBoost]). The findings indicate that the effectiveness of data treatment varies with the severity level and the algorithm used. The ADASYN-N technique was observed to be highly effective for severe and moderate injury crash prediction using both the RF and XGBoost models, while the control dataset and SMOTE-N demonstrated notable performance in property damage only crash prediction using both the RF and XGBoost models. The findings from evaluating the performance of these models with data treatment methods serve as a benchmark for practitioners in selecting appropriate synthetic sample generation techniques, consequently facilitating the development of more accurate crash severity prediction models and contributing to enhanced traffic safety strategies.",
+    "citationCount": 14,
+    "search_query": "class imbalance traffic severity SMOTE",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Addresses class imbalance, highly relevant to our data preprocessing.",
+    "_section": "Handling Class Imbalance in Traffic Analysis",
+    "cite_key": "ogungbire2024"
+  },
+  {
+    "title": "Predicting Injury Severity of Road Traffic Accidents Using a Hybrid Extreme Gradient Boosting and Deep Neural Network Approach",
+    "authors": [
+      "Biswajeet Pradhan",
+      "Maher Ibrahim Sameen"
+    ],
+    "year": 2019,
+    "venue": "Advances in Science, Technology & Innovation/Advances in science, technology & innovation",
+    "doi": "https://doi.org/10.1007/978-3-030-10374-3_10",
+    "abstract": "",
+    "citationCount": 24,
+    "search_query": "gradient boosting traffic severity",
+    "source": "OpenAlex",
+    "_relevance": "Medium",
+    "_justification": "Relevant to traffic severity prediction.",
+    "_section": "Traffic Accident Severity Prediction",
+    "cite_key": "pradhan2019"
+  },
+  {
+    "title": "CatBoost: unbiased boosting with categorical features",
+    "authors": [
+      "Liudmila Prokhorenkova",
+      "Gleb Gusev",
+      "Aleksandr Vorobev",
+      "Anna Veronika Dorogush",
+      "Andrey Gulin"
+    ],
+    "year": 2017,
+    "venue": "arXiv (Cornell University)",
+    "doi": "https://doi.org/10.48550/arxiv.1706.09516",
+    "abstract": "This paper presents the key algorithmic techniques behind CatBoost, a new gradient boosting toolkit. Their combination leads to CatBoost outperforming other publicly available boosting implementations in terms of quality on a variety of datasets. Two critical algorithmic advances introduced in CatBoost are the implementation of ordered boosting, a permutation-driven alternative to the classic algorithm, and an innovative algorithm for processing categorical features. Both techniques were created to fight a prediction shift caused by a special kind of target leakage present in all currently existing implementations of gradient boosting algorithms. In this paper, we provide a detailed analysis of this problem and demonstrate that proposed algorithms solve it effectively, leading to excellent empirical results.",
+    "citationCount": 1125,
+    "search_query": "CatBoost foundational",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Foundational methodology paper.",
+    "_section": "Methodology / Gradient Boosting and Ensemble Methods",
+    "cite_key": "prokhorenkova2017"
+  },
+  {
+    "title": "Decoupled dynamic spatial-temporal graph neural network for traffic forecasting",
+    "authors": [
+      "Zezhi Shao",
+      "Zhao Zhang",
+      "Wei Wei",
+      "Fei Wang",
+      "Yongjun Xu",
+      "Xin Cao",
+      "Christian S. Jensen"
+    ],
+    "year": 2022,
+    "venue": "Proceedings of the VLDB Endowment",
+    "doi": "https://doi.org/10.14778/3551793.3551827",
+    "abstract": "We all depend on mobility, and vehicular transportation affects the daily lives of most of us. Thus, the ability to forecast the state of traffic in a road network is an important functionality and a challenging task. Traffic data is often obtained from sensors deployed in a road network. Recent proposals on spatial-temporal graph neural networks have achieved great progress at modeling complex spatial-temporal correlations in traffic data, by modeling traffic data as a diffusion process. However, intuitively, traffic data encompasses two different kinds of hidden time series signals, namely the diffusion signals and inherent signals. Unfortunately, nearly all previous works coarsely consider traffic signals entirely as the outcome of the diffusion, while neglecting the inherent signals, which impacts model performance negatively. To improve modeling performance, we propose a novel Decoupled Spatial-Temporal Framework (DSTF) that separates the diffusion and inherent traffic information in a data-driven manner, which encompasses a unique estimation gate and a residual decomposition mechanism. The separated signals can be handled subsequently by the diffusion and inherent modules separately. Further, we propose an instantiation of DSTF, Decoupled Dynamic Spatial-Temporal Graph Neural Network (D 2 STGNN), that captures spatial-temporal correlations and also features a dynamic graph learning module that targets the learning of the dynamic characteristics of traffic networks. Extensive experiments with four real-world traffic datasets demonstrate that the framework is capable of advancing the state-of-the-art.",
+    "citationCount": 334,
+    "search_query": "spatial feature engineering traffic accidents",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Provides context on spatial feature engineering.",
+    "_section": "Spatial Feature Engineering in Predictive Modeling",
+    "cite_key": "shao2022"
+  },
+  {
+    "title": "Research on Traffic Accident Severity Level Prediction Model Based on Improved Machine Learning",
+    "authors": [
+      "J. K. K. Tang",
+      "Yao Zhi Huang",
+      "Dingli Liu",
+      "Liuyuan Xiong",
+      "Rongwei Bu"
+    ],
+    "year": 2025,
+    "venue": "Systems",
+    "doi": "https://doi.org/10.3390/systems13010031",
+    "abstract": "Traffic accidents occur frequently, causing significant losses to people\u2019s lives and property safety. Accurately predicting the severity level of traffic accidents is of great significance. Based on traffic accident data, this study comprehensively considers various influencing factors such as the geographical location, road conditions, and environment. The data are divided into accident-related categories, weather-related categories, and road- and environment-related categories. The machine learning method is improved through integration for the accident level prediction. In the experiment, effective preprocessing measures were taken for problems such as data imbalance, missing values, the encoding of categorical variables, and the standardization of numerical features. The unbalanced distribution of \u201cSeverity\u201d was improved through under-sampling and over-sampling techniques. Firstly, we adopted a multi-stage fusion strategy. A multi-layer perceptron (MLP) was used for the preliminary prediction, and then its result was combined with the original features to form a new feature. Decision tree, XGBoost, and random forest algorithms, respectively, were applied for the secondary prediction. The analysis results show that the improved machine learning model is significantly superior to a single model in the overall performance. The \u201cMLP + random forest\u201d model performs well in evaluation indicators such as the accuracy, recall rate, and F1 value. The accuracy rate is as high as 94%. In the prediction of different traffic accident severity levels (minor, moderate, and severe), the improved machine learning model also generally shows better performance and stability. The research results of this study have broad prospects in the field of intelligent driving. It can realize real-time accident prediction and early warnings, and provide decision support for drivers and autonomous driving systems. The research also provides a scientific basis for traffic planning and management departments to improve driving conditions and reduce the probability and losses of traffic accidents.",
+    "citationCount": 17,
+    "search_query": "traffic accident severity prediction machine learning",
+    "source": "OpenAlex",
+    "_relevance": "Medium",
+    "_justification": "Relevant to traffic severity prediction.",
+    "_section": "Traffic Accident Severity Prediction",
+    "cite_key": "tang2025"
+  },
+  {
+    "title": "Analyzing Accident Injury Severity via an Extreme Gradient Boosting (XGBoost) Model",
+    "authors": [
+      "Shubo Wu",
+      "Quan Yuan",
+      "Zhongwei Yan",
+      "Qing Xu"
+    ],
+    "year": 2021,
+    "venue": "Journal of Advanced Transportation",
+    "doi": "https://doi.org/10.1155/2021/3771640",
+    "abstract": "Vehicle to vulnerable road user (VRU) crashes occupy a large proportion of traffic crashes in China, and crash injury severity analysis can support traffic managers to understand the implicit rules behind the crashes. Therefore, 554 VRUs-involved crashes are collected from January, 2017, to February, 2021, in a city in northern China, including 322 vehicle-pedestrian crashes and 232 vehicle-bicycle crashes. First, a descriptive statistical analysis is conducted to investigate the characteristics of VRUs-involved crashes. Second, the extreme gradient boosting (XGBoost) model is introduced to identify the importance of risk factors (i.e., time of day, day of week, rushing hour, crash position, weather, and crash involvements) of VRUs-involved crashes. The statistical analysis demonstrates that the risk factors are closely related to VRUs-involved crash injury severity. Moreover, the results of XGBoost reveal that time of day has the greatest impact on VRUs-involved crashes, and crash position shows the minimum importance among these risk factors.",
+    "citationCount": 42,
+    "search_query": "gradient boosting traffic severity",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Directly uses target boosting methods for comparison.",
+    "_section": "Gradient Boosting and Ensemble Methods for Tabular Data",
+    "cite_key": "wu2021"
+  },
+  {
+    "title": "Predicting Freeway Traffic Crash Severity Using XGBoost-Bayesian Network Model with Consideration of Features Interaction",
+    "authors": [
+      "Yang Yang",
+      "Kun Wang",
+      "Zhenzhou Yuan",
+      "Dan Liu"
+    ],
+    "year": 2022,
+    "venue": "Journal of Advanced Transportation",
+    "doi": "https://doi.org/10.1155/2022/4257865",
+    "abstract": "In the field of freeway traffic safety research, there is an increasing focus in studies on how to reduce the frequency and severity of traffic crashes. Although many studies divide factors into \u201chuman-vehicle-road-environment\u201d and other dimensions to construct models whichshowthe characteristic patterns of each factor's influence on crash severity, there is still a lack of research on the interaction effect of road and environment characteristics on the severity of a freeway traffic crash. This research aims to explore the influence of road and environmental factors on the severity of a freeway traffic crash and establish a prediction model towards freeway traffic crash severity. Firstly, the obtained historical traffic crash data variables were screened, and 11 influencing factors were summarized from the perspective of road and environment, and the related variables were discretized. Furthermore, the XGBoost (eXtreme Gradient Boosting) model was established, and the SHAP (SHapley Additive exPlanation) value was introduced to interpret the XGBoost model; the importance ranking of the influence degree of each feature towards the target variables and the visualization of the global influence of each feature towards the target variables were both obtained. Then, the Bayesian network-based freeway traffic crash severity prediction model was constructed via the selected variables and their values, and the learning and prediction accuracy of the model were verified. Finally, based on the data of the case study, the prediction model was applied to predict the crash severity considering the interaction effect of various factors in road and environment dimensions. The results show that the characteristic variables of road side protection facility type (RSP), road section type (LAN), central isolation facility (CIF), lighting condition (LIG), and crash occurrence time (TIM) have significant effects on the traffic crash prediction model; the prediction performance of the model considering the interaction of road and environment is better than that of the model considering the influence of single condition; the prediction accuracy of XGBoost-Bayesian Network Model proposed in this research can reach 89.05%. The identification and prediction of traffic crash risk is a prerequisite for safety improvement, and the model proposed and results obtained in this research can provide a theoretical basis for related departments in freeway safety management.",
+    "citationCount": 96,
+    "search_query": "gradient boosting traffic severity",
+    "source": "OpenAlex",
+    "_relevance": "High",
+    "_justification": "Directly uses target boosting methods for comparison.",
+    "_section": "Gradient Boosting and Ensemble Methods for Tabular Data",
+    "cite_key": "yang2022"
+  }
+]

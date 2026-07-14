@@ -1,0 +1,1316 @@
+Collecting catboost
+
+  Downloading catboost-1.2.10-cp312-cp312-manylinux2014_x86_64.whl.metadata (1.2 kB)
+
+Requirement already satisfied: graphviz in /usr/local/lib/python3.12/dist-packages (from catboost) (0.21)
+
+Requirement already satisfied: matplotlib in /usr/local/lib/python3.12/dist-packages (from catboost) (3.10.0)
+
+Requirement already satisfied: numpy<3.0,>=1.16.0 in /usr/local/lib/python3.12/dist-packages (from catboost) (2.0.2)
+
+Requirement already satisfied: pandas<4.0,>=0.24 in /usr/local/lib/python3.12/dist-packages (from catboost) (2.2.2)
+
+Requirement already satisfied: scipy in /usr/local/lib/python3.12/dist-packages (from catboost) (1.16.3)
+
+Requirement already satisfied: plotly in /usr/local/lib/python3.12/dist-packages (from catboost) (5.24.1)
+
+Requirement already satisfied: six in /usr/local/lib/python3.12/dist-packages (from catboost) (1.17.0)
+
+Requirement already satisfied: python-dateutil>=2.8.2 in /usr/local/lib/python3.12/dist-packages (from pandas<4.0,>=0.24->catboost) (2.9.0.post0)
+
+Requirement already satisfied: pytz>=2020.1 in /usr/local/lib/python3.12/dist-packages (from pandas<4.0,>=0.24->catboost) (2025.2)
+
+Requirement already satisfied: tzdata>=2022.7 in /usr/local/lib/python3.12/dist-packages (from pandas<4.0,>=0.24->catboost) (2026.2)
+
+Requirement already satisfied: contourpy>=1.0.1 in /usr/local/lib/python3.12/dist-packages (from matplotlib->catboost) (1.3.3)
+
+Requirement already satisfied: cycler>=0.10 in /usr/local/lib/python3.12/dist-packages (from matplotlib->catboost) (0.12.1)
+
+Requirement already satisfied: fonttools>=4.22.0 in /usr/local/lib/python3.12/dist-packages (from matplotlib->catboost) (4.63.0)
+
+Requirement already satisfied: kiwisolver>=1.3.1 in /usr/local/lib/python3.12/dist-packages (from matplotlib->catboost) (1.5.0)
+
+Requirement already satisfied: packaging>=20.0 in /usr/local/lib/python3.12/dist-packages (from matplotlib->catboost) (26.2)
+
+Requirement already satisfied: pillow>=8 in /usr/local/lib/python3.12/dist-packages (from matplotlib->catboost) (11.3.0)
+
+Requirement already satisfied: pyparsing>=2.3.1 in /usr/local/lib/python3.12/dist-packages (from matplotlib->catboost) (3.3.2)
+
+Requirement already satisfied: tenacity>=6.2.0 in /usr/local/lib/python3.12/dist-packages (from plotly->catboost) (9.1.4)
+
+Downloading catboost-1.2.10-cp312-cp312-manylinux2014_x86_64.whl (97.1 MB)
+
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m97.1/97.1 MB[0m [31m9.3 MB/s[0m eta [36m0:00:00[0m
+
+[?25hInstalling collected packages: catboost
+
+Successfully installed catboost-1.2.10
+
+Loaded data: 289,444 rows x 44 columns
+
+Phân bố nhãn sau khi gộp:
+
+collision_severity
+
+1    144722
+
+0    144722
+
+Name: count, dtype: int64
+
+Train: 231,555 rows | Test: 57,889 rows
+
+/usr/local/lib/python3.12/dist-packages/sklearn/linear_model/_logistic.py:465: ConvergenceWarning: lbfgs failed to converge (status=1):
+
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+
+
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+
+    https://scikit-learn.org/stable/modules/preprocessing.html
+
+Please also refer to the documentation for alternative solver options:
+
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+
+  n_iter_i = _check_optimize_result(
+
+[LightGBM] [Info] Number of positive: 115778, number of negative: 115777
+
+[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.034704 seconds.
+
+You can set `force_row_wise=true` to remove the overhead.
+
+And if memory is not enough, you can set `force_col_wise=true`.
+
+[LightGBM] [Info] Total Bins 2111
+
+[LightGBM] [Info] Number of data points in the train set: 231555, number of used features: 31
+
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.500000 -> initscore=0.000000
+
+[LightGBM] [Info] Start training from score 0.000000
+
+
+
+============================================================
+
+Logistic Regression RESULTS
+
+============================================================
+
+Accuracy   : 0.6752
+
+F1 Macro   : 0.6750
+
+
+
+Classification Report:
+
+               precision    recall  f1-score   support
+
+
+
+Non-Fatal (0)       0.67      0.70      0.68     28945
+
+    Fatal (1)       0.68      0.65      0.67     28944
+
+
+
+     accuracy                           0.68     57889
+
+    macro avg       0.68      0.68      0.68     57889
+
+ weighted avg       0.68      0.68      0.68     57889
+
+
+
+Confusion Matrix:
+
+[[20195  8750]
+
+ [10054 18890]]
+
+
+
+============================================================
+
+Random Forest RESULTS
+
+============================================================
+
+Accuracy   : 0.7300
+
+F1 Macro   : 0.7299
+
+
+
+Classification Report:
+
+               precision    recall  f1-score   support
+
+
+
+Non-Fatal (0)       0.74      0.71      0.73     28945
+
+    Fatal (1)       0.72      0.75      0.73     28944
+
+
+
+     accuracy                           0.73     57889
+
+    macro avg       0.73      0.73      0.73     57889
+
+ weighted avg       0.73      0.73      0.73     57889
+
+
+
+Confusion Matrix:
+
+[[20607  8338]
+
+ [ 7293 21651]]
+
+
+
+Top 15 Feature Importances:
+
+number_of_casualties                           0.108301
+
+speed_limit                                    0.098124
+
+number_of_vehicles                             0.089796
+
+collision_year                                 0.062894
+
+location_easting_osgr                          0.053804
+
+location_northing_osgr                         0.052960
+
+first_road_number                              0.045857
+
+local_authority_district                       0.044216
+
+did_police_officer_attend_scene_of_accident    0.043746
+
+light_conditions                               0.040317
+
+junction_detail_historic                       0.033908
+
+urban_or_rural_area                            0.033599
+
+police_force                                   0.029791
+
+junction_control                               0.028901
+
+latitude                                       0.028673
+
+dtype: float64
+
+
+
+============================================================
+
+XGBoost RESULTS
+
+============================================================
+
+Accuracy   : 0.7358
+
+F1 Macro   : 0.7357
+
+
+
+Classification Report:
+
+               precision    recall  f1-score   support
+
+
+
+Non-Fatal (0)       0.74      0.72      0.73     28945
+
+    Fatal (1)       0.73      0.75      0.74     28944
+
+
+
+     accuracy                           0.74     57889
+
+    macro avg       0.74      0.74      0.74     57889
+
+ weighted avg       0.74      0.74      0.74     57889
+
+
+
+Confusion Matrix:
+
+[[20780  8165]
+
+ [ 7129 21815]]
+
+
+
+Top 15 Feature Importances:
+
+did_police_officer_attend_scene_of_accident    0.151740
+
+speed_limit                                    0.146597
+
+number_of_casualties                           0.125735
+
+number_of_vehicles                             0.097976
+
+urban_or_rural_area                            0.055046
+
+junction_control                               0.040491
+
+light_conditions                               0.035311
+
+trunk_road_flag                                0.031985
+
+junction_detail_historic                       0.027135
+
+road_type                                      0.022869
+
+first_road_class                               0.020359
+
+collision_year                                 0.019425
+
+road_surface_conditions                        0.018442
+
+carriageway_hazards                            0.016669
+
+pedestrian_crossing                            0.013728
+
+dtype: float32
+
+
+
+============================================================
+
+LightGBM RESULTS
+
+============================================================
+
+Accuracy   : 0.7351
+
+F1 Macro   : 0.7350
+
+
+
+Classification Report:
+
+               precision    recall  f1-score   support
+
+
+
+Non-Fatal (0)       0.74      0.72      0.73     28945
+
+    Fatal (1)       0.73      0.75      0.74     28944
+
+
+
+     accuracy                           0.74     57889
+
+    macro avg       0.74      0.74      0.73     57889
+
+ weighted avg       0.74      0.74      0.73     57889
+
+
+
+Confusion Matrix:
+
+[[20712  8233]
+
+ [ 7104 21840]]
+
+
+
+Top 15 Feature Importances:
+
+collision_year                                 1497
+
+location_easting_osgr                          1338
+
+location_northing_osgr                         1233
+
+local_authority_district                        863
+
+first_road_number                               847
+
+number_of_vehicles                              720
+
+latitude                                        692
+
+longitude                                       654
+
+number_of_casualties                            643
+
+police_force                                    545
+
+speed_limit                                     514
+
+day_of_week                                     500
+
+light_conditions                                461
+
+did_police_officer_attend_scene_of_accident     456
+
+road_type                                       418
+
+dtype: int32
+
+
+
+============================================================
+
+CatBoost RESULTS
+
+============================================================
+
+Accuracy   : 0.7360
+
+F1 Macro   : 0.7359
+
+
+
+Classification Report:
+
+               precision    recall  f1-score   support
+
+
+
+Non-Fatal (0)       0.75      0.72      0.73     28945
+
+    Fatal (1)       0.73      0.76      0.74     28944
+
+
+
+     accuracy                           0.74     57889
+
+    macro avg       0.74      0.74      0.74     57889
+
+ weighted avg       0.74      0.74      0.74     57889
+
+
+
+Confusion Matrix:
+
+[[20739  8206]
+
+ [ 7078 21866]]
+
+
+
+Top 15 Feature Importances:
+
+number_of_vehicles                             14.591974
+
+number_of_casualties                           12.072674
+
+speed_limit                                    10.801238
+
+did_police_officer_attend_scene_of_accident    10.787933
+
+collision_year                                  6.118753
+
+light_conditions                                4.502115
+
+urban_or_rural_area                             3.997991
+
+road_type                                       3.091707
+
+junction_detail_historic                        2.997804
+
+junction_control                                2.938990
+
+first_road_class                                2.878748
+
+police_force                                    2.680179
+
+location_northing_osgr                          2.639487
+
+location_easting_osgr                           2.378923
+
+road_surface_conditions                         2.252414
+
+dtype: float64
+
+
+
+Model Comparison
+
+                 Model  Accuracy  F1 Macro
+
+4             CatBoost  0.735977  0.735877
+
+2              XGBoost  0.735805  0.735720
+
+3             LightGBM  0.735062  0.734961
+
+1        Random Forest  0.729983  0.729895
+
+0  Logistic Regression  0.675171  0.675006
+
+longitude                 54.096820
+
+latitude                  54.096820
+
+location_northing_osgr     0.134396
+
+location_easting_osgr      0.134396
+
+dtype: float64
+
+Modeling target proportions:
+
+collision_severity
+
+1    0.5
+
+0    0.5
+
+Name: proportion, dtype: float64
+
+/usr/local/lib/python3.12/dist-packages/sklearn/linear_model/_logistic.py:465: ConvergenceWarning: lbfgs failed to converge (status=1):
+
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+
+
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+
+    https://scikit-learn.org/stable/modules/preprocessing.html
+
+Please also refer to the documentation for alternative solver options:
+
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+
+  n_iter_i = _check_optimize_result(
+
+
+
+============================================================
+
+Logistic Regression RESULTS
+
+============================================================
+
+Accuracy    : 0.6752
+
+Precision   : 0.6834
+
+Recall      : 0.6526
+
+F1-Score    : 0.6677
+
+ROC-AUC     : 0.7368
+
+Train Time  : 302.01s
+
+Infer Time  : 0.0354s
+
+Confusion Matrix ([[TN, FP], [FN, TP]]):
+
+[[20195  8750]
+
+ [10054 18890]]
+
+
+
+============================================================
+
+Decision Tree RESULTS
+
+============================================================
+
+Accuracy    : 0.7156
+
+Precision   : 0.7045
+
+Recall      : 0.7425
+
+F1-Score    : 0.7230
+
+ROC-AUC     : 0.7839
+
+Train Time  : 3.23s
+
+Infer Time  : 0.0146s
+
+Confusion Matrix ([[TN, FP], [FN, TP]]):
+
+[[19932  9013]
+
+ [ 7453 21491]]
+
+
+
+============================================================
+
+Random Forest RESULTS
+
+============================================================
+
+Accuracy    : 0.7300
+
+Precision   : 0.7220
+
+Recall      : 0.7480
+
+F1-Score    : 0.7348
+
+ROC-AUC     : 0.8066
+
+Train Time  : 121.81s
+
+Infer Time  : 2.5136s
+
+Confusion Matrix ([[TN, FP], [FN, TP]]):
+
+[[20607  8338]
+
+ [ 7293 21651]]
+
+
+
+============================================================
+
+Extra Trees RESULTS
+
+============================================================
+
+Accuracy    : 0.7150
+
+Precision   : 0.7085
+
+Recall      : 0.7305
+
+F1-Score    : 0.7193
+
+ROC-AUC     : 0.7883
+
+Train Time  : 62.29s
+
+Infer Time  : 2.2143s
+
+Confusion Matrix ([[TN, FP], [FN, TP]]):
+
+[[20245  8700]
+
+ [ 7801 21143]]
+
+
+
+============================================================
+
+AdaBoost RESULTS
+
+============================================================
+
+Accuracy    : 0.7115
+
+Precision   : 0.7135
+
+Recall      : 0.7067
+
+F1-Score    : 0.7101
+
+ROC-AUC     : 0.7873
+
+Train Time  : 55.98s
+
+Infer Time  : 0.6191s
+
+Confusion Matrix ([[TN, FP], [FN, TP]]):
+
+[[20731  8214]
+
+ [ 8489 20455]]
+
+
+
+============================================================
+
+Gradient Boosting RESULTS
+
+============================================================
+
+Accuracy    : 0.7305
+
+Precision   : 0.7194
+
+Recall      : 0.7560
+
+F1-Score    : 0.7372
+
+ROC-AUC     : 0.8068
+
+Train Time  : 163.60s
+
+Infer Time  : 0.2413s
+
+Confusion Matrix ([[TN, FP], [FN, TP]]):
+
+[[20409  8536]
+
+ [ 7063 21881]]
+
+
+
+============================================================
+
+XGBoost RESULTS
+
+============================================================
+
+Accuracy    : 0.7358
+
+Precision   : 0.7277
+
+Recall      : 0.7537
+
+F1-Score    : 0.7404
+
+ROC-AUC     : 0.8130
+
+Train Time  : 16.48s
+
+Infer Time  : 0.9451s
+
+Confusion Matrix ([[TN, FP], [FN, TP]]):
+
+[[20780  8165]
+
+ [ 7129 21815]]
+
+[LightGBM] [Info] Number of positive: 115778, number of negative: 115777
+
+[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.036027 seconds.
+
+You can set `force_row_wise=true` to remove the overhead.
+
+And if memory is not enough, you can set `force_col_wise=true`.
+
+[LightGBM] [Info] Total Bins 2111
+
+[LightGBM] [Info] Number of data points in the train set: 231555, number of used features: 31
+
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.500000 -> initscore=0.000000
+
+[LightGBM] [Info] Start training from score 0.000000
+
+
+
+============================================================
+
+LightGBM RESULTS
+
+============================================================
+
+Accuracy    : 0.7351
+
+Precision   : 0.7262
+
+Recall      : 0.7546
+
+F1-Score    : 0.7401
+
+ROC-AUC     : 0.8124
+
+Train Time  : 14.30s
+
+Infer Time  : 1.5267s
+
+Confusion Matrix ([[TN, FP], [FN, TP]]):
+
+[[20712  8233]
+
+ [ 7104 21840]]
+
+
+
+============================================================
+
+CatBoost (Baseline) RESULTS
+
+============================================================
+
+Accuracy    : 0.7360
+
+Precision   : 0.7271
+
+Recall      : 0.7555
+
+F1-Score    : 0.7410
+
+ROC-AUC     : 0.8132
+
+Train Time  : 41.88s
+
+Infer Time  : 0.0641s
+
+Confusion Matrix ([[TN, FP], [FN, TP]]):
+
+[[20739  8206]
+
+ [ 7078 21866]]
+
+
+
+Final Model Comparison (Part 1 — Baseline & Advanced Models)
+
+              Model  Accuracy  Precision  Recall  F1-Score  ROC-AUC  Training Time (s)  Inference Time (s)
+
+CatBoost (Baseline)    0.7360     0.7271  0.7555    0.7410   0.8132            41.8774              0.0641
+
+            XGBoost    0.7358     0.7277  0.7537    0.7404   0.8130            16.4809              0.9451
+
+           LightGBM    0.7351     0.7262  0.7546    0.7401   0.8124            14.2957              1.5267
+
+  Gradient Boosting    0.7305     0.7194  0.7560    0.7372   0.8068           163.5982              0.2413
+
+      Random Forest    0.7300     0.7220  0.7480    0.7348   0.8066           121.8057              2.5136
+
+        Extra Trees    0.7150     0.7085  0.7305    0.7193   0.7883            62.2942              2.2143
+
+           AdaBoost    0.7115     0.7135  0.7067    0.7101   0.7873            55.9759              0.6191
+
+      Decision Tree    0.7156     0.7045  0.7425    0.7230   0.7839             3.2269              0.0146
+
+Logistic Regression    0.6752     0.6834  0.6526    0.6677   0.7368           302.0089              0.0354
+
+/usr/local/lib/python3.12/dist-packages/sklearn/linear_model/_logistic.py:465: ConvergenceWarning: lbfgs failed to converge (status=1):
+
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+
+
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+
+    https://scikit-learn.org/stable/modules/preprocessing.html
+
+Please also refer to the documentation for alternative solver options:
+
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+
+  n_iter_i = _check_optimize_result(
+
+/usr/local/lib/python3.12/dist-packages/sklearn/linear_model/_logistic.py:465: ConvergenceWarning: lbfgs failed to converge (status=1):
+
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+
+
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+
+    https://scikit-learn.org/stable/modules/preprocessing.html
+
+Please also refer to the documentation for alternative solver options:
+
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+
+  n_iter_i = _check_optimize_result(
+
+/usr/local/lib/python3.12/dist-packages/sklearn/linear_model/_logistic.py:465: ConvergenceWarning: lbfgs failed to converge (status=1):
+
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+
+
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+
+    https://scikit-learn.org/stable/modules/preprocessing.html
+
+Please also refer to the documentation for alternative solver options:
+
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+
+  n_iter_i = _check_optimize_result(
+
+/usr/local/lib/python3.12/dist-packages/sklearn/linear_model/_logistic.py:465: ConvergenceWarning: lbfgs failed to converge (status=1):
+
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+
+
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+
+    https://scikit-learn.org/stable/modules/preprocessing.html
+
+Please also refer to the documentation for alternative solver options:
+
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+
+  n_iter_i = _check_optimize_result(
+
+/usr/local/lib/python3.12/dist-packages/sklearn/linear_model/_logistic.py:465: ConvergenceWarning: lbfgs failed to converge (status=1):
+
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT.
+
+
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+
+    https://scikit-learn.org/stable/modules/preprocessing.html
+
+Please also refer to the documentation for alternative solver options:
+
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+
+  n_iter_i = _check_optimize_result(
+
+Logistic Regression: ROC-AUC = 0.7389 ± 0.0028
+
+Decision Tree: ROC-AUC = 0.7807 ± 0.0023
+
+Random Forest: ROC-AUC = 0.8052 ± 0.0020
+
+Extra Trees: ROC-AUC = 0.7898 ± 0.0018
+
+AdaBoost: ROC-AUC = 0.7878 ± 0.0028
+
+Gradient Boosting: ROC-AUC = 0.8066 ± 0.0022
+
+XGBoost: ROC-AUC = 0.8118 ± 0.0017
+
+[LightGBM] [Info] Number of positive: 92622, number of negative: 92622
+
+[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.043651 seconds.
+
+You can set `force_row_wise=true` to remove the overhead.
+
+And if memory is not enough, you can set `force_col_wise=true`.
+
+[LightGBM] [Info] Total Bins 2111
+
+[LightGBM] [Info] Number of data points in the train set: 185244, number of used features: 31
+
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.500000 -> initscore=0.000000
+
+[LightGBM] [Info] Number of positive: 92622, number of negative: 92622
+
+[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.035069 seconds.
+
+You can set `force_row_wise=true` to remove the overhead.
+
+And if memory is not enough, you can set `force_col_wise=true`.
+
+[LightGBM] [Info] Total Bins 2112
+
+[LightGBM] [Info] Number of data points in the train set: 185244, number of used features: 31
+
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.500000 -> initscore=0.000000
+
+[LightGBM] [Info] Number of positive: 92622, number of negative: 92622
+
+[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.031662 seconds.
+
+You can set `force_row_wise=true` to remove the overhead.
+
+And if memory is not enough, you can set `force_col_wise=true`.
+
+[LightGBM] [Info] Total Bins 2112
+
+[LightGBM] [Info] Number of data points in the train set: 185244, number of used features: 31
+
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.500000 -> initscore=0.000000
+
+[LightGBM] [Info] Number of positive: 92623, number of negative: 92621
+
+[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.027599 seconds.
+
+You can set `force_row_wise=true` to remove the overhead.
+
+And if memory is not enough, you can set `force_col_wise=true`.
+
+[LightGBM] [Info] Total Bins 2108
+
+[LightGBM] [Info] Number of data points in the train set: 185244, number of used features: 31
+
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.500000 -> initscore=-0.000000
+
+[LightGBM] [Info] Start training from score -0.000000
+
+[LightGBM] [Info] Number of positive: 92623, number of negative: 92621
+
+[LightGBM] [Info] Auto-choosing row-wise multi-threading, the overhead of testing was 0.026956 seconds.
+
+You can set `force_row_wise=true` to remove the overhead.
+
+And if memory is not enough, you can set `force_col_wise=true`.
+
+[LightGBM] [Info] Total Bins 2109
+
+[LightGBM] [Info] Number of data points in the train set: 185244, number of used features: 31
+
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.500000 -> initscore=-0.000000
+
+[LightGBM] [Info] Start training from score -0.000000
+
+LightGBM: ROC-AUC = 0.8111 ± 0.0018
+
+CatBoost (Baseline): ROC-AUC = 0.8119 ± 0.0019
+
+
+
+5-Fold Cross-Validation Results (training set only)
+
+              Model        Accuracy        F1-Score         ROC-AUC
+
+Logistic Regression 0.6776 ± 0.0035 0.6718 ± 0.0034 0.7389 ± 0.0028
+
+      Decision Tree 0.7133 ± 0.0022 0.7177 ± 0.0035 0.7807 ± 0.0023
+
+      Random Forest 0.7289 ± 0.0019 0.7338 ± 0.0016 0.8052 ± 0.0020
+
+        Extra Trees 0.7162 ± 0.0016 0.7201 ± 0.0016 0.7898 ± 0.0018
+
+           AdaBoost 0.7137 ± 0.0022 0.7129 ± 0.0026 0.7878 ± 0.0028
+
+  Gradient Boosting 0.7296 ± 0.0021 0.7359 ± 0.0022 0.8066 ± 0.0022
+
+            XGBoost 0.7341 ± 0.0019 0.7385 ± 0.0019 0.8118 ± 0.0017
+
+           LightGBM 0.7339 ± 0.0021 0.7386 ± 0.0021 0.8111 ± 0.0018
+
+CatBoost (Baseline) 0.7343 ± 0.0018 0.7391 ± 0.0019 0.8119 ± 0.0019
+
+              Model  ROC-AUC  Training Time (s)  Inference Time (s)  Estimators/Trees  Max Depth
+
+CatBoost (Baseline) 0.813245          41.877393            0.064084               500        NaN
+
+            XGBoost 0.813030          16.480889            0.945099               500        8.0
+
+           LightGBM 0.812427          14.295684            1.526661               500       10.0
+
+  Gradient Boosting 0.806839         163.598195            0.241323               200        4.0
+
+      Random Forest 0.806637         121.805691            2.513618               300       20.0
+
+        Extra Trees 0.788332          62.294165            2.214339               300       20.0
+
+           AdaBoost 0.787267          55.975899            0.619094               200        NaN
+
+      Decision Tree 0.783857           3.226946            0.014617                 1       12.0
+
+Logistic Regression 0.736833         302.008891            0.035402                 1        NaN
+
+Fitted KMeans on 106,196 training records with valid coordinates (45.9% of the training set).
+
+Spatial cluster distribution (train):
+
+spatial_cluster
+
+-1     125359
+
+ 0       4644
+
+ 1       7968
+
+ 2      21129
+
+ 3       3028
+
+ 4       4263
+
+ 5       7889
+
+ 6       3202
+
+ 7       3855
+
+ 8       2942
+
+ 9       1446
+
+ 10      4649
+
+ 11      4767
+
+ 12      1939
+
+ 13      3817
+
+ 14      6178
+
+ 15      5661
+
+ 16      3512
+
+ 17      7388
+
+ 18      6105
+
+ 19      1814
+
+Name: count, dtype: int64
+
+X_train_spatial shape: (231555, 34)
+
+Categorical features passed natively to CatBoost (3): ['spatial_cluster', 'grid_region_id', 'nearest_city_zone']
+
+Hyperparameter search results (validation set):
+
+ depth  learning_rate  l2_leaf_reg  val_AUC  best_iteration
+
+     8           0.05            5 0.813623             916
+
+    10           0.05            7 0.813073             557
+
+     8           0.03            5 0.812868             999
+
+     6           0.05            3 0.812769             999
+
+
+
+Selected params: {'depth': 8, 'learning_rate': 0.05, 'l2_leaf_reg': 5}
+
+
+
+Best iteration: 916 (of 917 trees kept)
+
+Training time: 279.67s
+
+
+
+============================================================
+
+Improved CatBoost (Spatial + Tuned) RESULTS
+
+============================================================
+
+Accuracy    : 0.7362
+
+Precision   : 0.7278
+
+Recall      : 0.7547
+
+F1-Score    : 0.7410
+
+ROC-AUC     : 0.8136
+
+Train Time  : 279.67s
+
+Infer Time  : 0.2297s
+
+Confusion Matrix ([[TN, FP], [FN, TP]]):
+
+[[20775  8170]
+
+ [ 7101 21843]]
+
+    k   ROC-AUC
+
+0   5  0.811533
+
+1  10  0.811386
+
+2  20  0.811528
+
+3  30  0.811561
+
+4  50  0.811512
+
+   grid_size   ROC-AUC
+
+0       0.10  0.811283
+
+1       0.25  0.811594
+
+2       0.50  0.811528
+
+3       1.00  0.811463
+
+4       2.00  0.811375
+
+
+
+============================================================
+
+2. CatBoost + Spatial Features RESULTS
+
+============================================================
+
+Accuracy    : 0.7350
+
+Precision   : 0.7262
+
+Recall      : 0.7542
+
+F1-Score    : 0.7400
+
+ROC-AUC     : 0.8132
+
+Train Time  : 169.05s
+
+Infer Time  : 0.1480s
+
+Confusion Matrix ([[TN, FP], [FN, TP]]):
+
+[[20715  8230]
+
+ [ 7113 21831]]
+
+
+
+Ablation Study — CatBoost Variants
+
+                         Model  Accuracy  Precision  Recall  F1-Score  ROC-AUC  Training Time (s)  Inference Time (s)
+
+          1. Baseline CatBoost    0.7360     0.7271  0.7555     0.741   0.8132            41.8774              0.0641
+
+2. CatBoost + Spatial Features    0.7350     0.7262  0.7542     0.740   0.8132           169.0481              0.1480
+
+    3. Final Improved CatBoost    0.7362     0.7278  0.7547     0.741   0.8136           279.6738              0.2297
+
+McNemar's Test — Baseline CatBoost vs. Final Improved CatBoost
+
+Only Baseline correct : 795
+
+Only Improved correct : 808
+
+chi2 statistic = 0.0898, p-value = 0.7644
+
+=> No statistically significant difference at the 0.05 level
+
+Baseline CatBoost  CV ROC-AUC: 0.8104 ± 0.0019  [0.8105 0.808  0.8138 0.8106 0.8093]
+
+Spatial CatBoost   CV ROC-AUC: 0.8103 ± 0.0020  [0.8104 0.808  0.8137 0.8107 0.8089]
+
+
+
+Paired t-test: t = -1.1619, p = 0.3099
+
+=> No statistically significant improvement from spatial features at the 0.05 level
+
+
+
+Error rate by weather_conditions:
+
+weather_conditions
+
+ 4    0.3013
+
+ 6    0.2927
+
+-1    0.2857
+
+ 7    0.2675
+
+ 8    0.2672
+
+ 5    0.2653
+
+ 1    0.2649
+
+ 2    0.2591
+
+ 3    0.2428
+
+ 9    0.1669
+
+Name: correct, dtype: float64
+
+
+
+Error rate by road_type:
+
+road_type
+
+ 12    0.3130
+
+ 6     0.2674
+
+ 2     0.2655
+
+ 3     0.2635
+
+ 9     0.2468
+
+ 7     0.2439
+
+ 1     0.1694
+
+-1     0.0000
+
+Name: correct, dtype: float64
+
+
+
+Error rate by light_conditions:
+
+light_conditions
+
+-1    0.3333
+
+ 4    0.2705
+
+ 1    0.2682
+
+ 5    0.2568
+
+ 6    0.2280
+
+ 7    0.2235
+
+Name: correct, dtype: float64
+
+
+
+Error rate by urban_or_rural_area:
+
+urban_or_rural_area
+
+ 2    0.2846
+
+-1    0.2774
+
+ 3    0.2400
+
+ 1    0.2284
+
+Name: correct, dtype: float64
+
+ spatial_cluster  accuracy    n  fatal_rate
+
+              12    0.6935  496      0.4597
+
+              19    0.6965  481      0.5426
+
+               4    0.7092 1018      0.4361
+
+               8    0.7266  757      0.5390
+
+               3    0.7270  751      0.4820
+
+              14    0.7283 1553      0.4810
+
+               9    0.7286  350      0.6371
+
+              17    0.7329 1816      0.4224
+
+               1    0.7332 2088      0.4100
+
+               5    0.7341 1997      0.4422
+
+               0    0.7371 1160      0.5233
+
+               6    0.7412  796      0.4548
+
+              15    0.7416 1370      0.4036
+
+              10    0.7425 1161      0.4634
+
+              18    0.7470 1561      0.4632
+
+              11    0.7492 1216      0.4021
+
+              13    0.7543  940      0.4681
+
+              16    0.7611  904      0.5376
+
+               7    0.7720  978      0.4479
+
+               2    0.7809 5275      0.2785
+

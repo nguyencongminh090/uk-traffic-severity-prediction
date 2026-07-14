@@ -1,0 +1,272 @@
+\documentclass[runningheads]{llncs}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\usepackage{xurl}
+\usepackage{placeins}
+
+% Hide DOIs per user request
+\def\doi#1{}
+
+\begin{document}
+
+\title{Evaluating Spatial Feature Engineering in CatBoost for UK Traffic Accident Severity Prediction}
+\author{Anonymous Author(s)}
+\institute{Anonymous Institute}
+\maketitle
+
+\begin{abstract}
+Traffic accidents remain a severe public safety challenge. Predicting accident severity helps authorities deploy timely interventions. While standard machine learning models effectively use administrative and environmental variables, integrating explicit spatial data remains challenging due to sparsity and dimensionality. This study develops a CatBoost framework evaluating the impact of explicit spatial features, KMeans coordinate clusters and distances to major cities, on predicting traffic fatalities in the United Kingdom. Using a balanced dataset of 289,444 records, we establish a baseline across multiple classification algorithms, with CatBoost achieving the highest ROC-AUC of 0.8132. Subsequent ablation experiments reveal that injecting engineered spatial features yields no statistically significant performance gain (ROC-AUC 0.8136, $p=0.7644$). We attribute this to severe coordinate sparsity (54\% missing data) and the overlapping spatial proxy signals already present in standard administrative variables such as speed limits and police zones. The results suggest that for traffic datasets with extensive missing coordinates, complex spatial feature engineering provides redundant information.
+\keywords{Traffic Accident Severity, Spatial Feature Engineering, CatBoost, Machine Learning, Imbalanced Data}
+\end{abstract}
+
+\section{Introduction}
+
+Traffic accidents remain a severe public safety challenge worldwide. When analyzing collision data, predicting accident severity helps authorities deploy timely interventions and allocate medical resources where they are most needed. We noticed that while conventional machine learning methods frequently predict crash severity using weather conditions, road types, and lighting, they often struggle to exploit direct spatial information, such as precise geographic coordinates or the localized clustering of accidents.
+
+Fatal traffic risks do not distribute uniformly across a map. We hypothesized that variables like speed limits, urban versus rural zoning, and proximity to medical facilities correlate heavily with the exact accident location. Yet standard baseline models lack explicit features to represent this geographic variance natively.
+
+To test whether explicit location data improves prediction, we developed a modified CatBoost framework integrating spatial feature engineering on a United Kingdom traffic accident dataset. By feeding latitude and longitude coordinates into the pipeline, we extracted spatial clusters and city-distance metrics. We selected CatBoost specifically to exploit its native capacity for processing the resulting high-cardinality categorical variables. Our primary research question asks: Does integrating explicit spatial features, specifically coordinate clustering and distances to major cities, actually improve a CatBoost model's ability to predict traffic fatalities compared to standard machine learning baselines?
+
+
+\section{Related Work}
+
+\subsection{Traffic Accident Severity Prediction}
+Accurately predicting the severity of traffic collisions remains a core challenge in transportation safety research. Predictive models historically relied on statistical techniques to isolate factors contributing to fatal or severe outcomes \cite{boulieri2016}. As computational capacity expanded, the field steadily shifted toward machine learning frameworks capable of mapping nonlinear interactions across complex feature sets. Researchers have repeatedly demonstrated that algorithmic approaches outperform traditional logistic regression when forecasting collision severity \cite{obasi2023,pradhan2019,tang2025}. 
+
+Within this domain, data availability dictates methodological choices. Studies leveraging large-scale accident databases frequently build predictive pipelines targeting weather patterns, road geometry, and temporal indicators to classify crash outcomes \cite{mostafa2025}. While these models successfully extract patterns from environmental and behavioral data, they often isolate features from their geographic context. For instance, spatiotemporal analyses confirm that accident hotspots correlate with localized urban features \cite{kazmi2020}, yet many predictive models fail to integrate this spatial variance directly into their training matrices.
+
+\subsection{Gradient Boosting and Ensemble Methods for Tabular Data}
+Tree-based ensemble architectures consistently dominate predictive tasks involving heterogeneous tabular datasets. Foundational implementations such as XGBoost \cite{chen2016} and LightGBM \cite{ke2017} introduced highly scalable boosting frameworks that mitigate overfitting while capturing deep feature interactions. More recently, CatBoost \cite{prokhorenkova2017} emerged as a specialized architecture optimized for native processing of high-cardinality categorical variables through ordered boosting and target-based encoding strategies.
+
+Applied to transportation safety, these algorithms yield high-fidelity predictions. Investigations into highway collisions and pedestrian crashes routinely deploy XGBoost and LightGBM as primary evaluators \cite{guo2021,lee2020,li2022,wu2021}. Hybrid models extending XGBoost with Bayesian networks or optimization routines further refine severity classification \cite{chen2025,yang2022}. However, the efficacy of gradient boosting in this context depends heavily on feature representation. When tabular data contains sparse or fragmented geographic information, even advanced ensembles require explicit spatial feature engineering to resolve localized risk factors. Our framework specifically leverages CatBoost's categorical processing to handle the outputs of spatial clustering algorithms natively.
+
+\subsection{Spatial Feature Engineering in Predictive Modeling}
+Geography inherently constrains traffic behavior, yet incorporating spatial dimensions into standard tabular classifiers introduces high dimensionality and sparsity. Advanced deep learning architectures circumvent this by modeling road networks as dynamic spatial-temporal graphs \cite{diao2019,shao2022}. These graph neural networks capture intricate topological relationships, but they require continuous sensor data and complex network topologies rarely available in static historical collision reports.
+
+For static tabular datasets, researchers typically engineer proxy features to represent spatial relationships. Techniques like Kernel Density Estimation help identify risk clusters \cite{kazmi2020}, but translating geographic coordinates directly into predictive features for boosting algorithms remains challenging due to data fragmentation. By extracting localized clusters and proximity metrics to major urban centers, we supply the CatBoost algorithm with explicit spatial structures without requiring continuous temporal sensing.
+
+\subsection{Handling Class Imbalance in Traffic Analysis}
+Traffic accident datasets exhibit severe class imbalance, as fatal collisions constitute a very small minority of total recorded incidents. Left unaddressed, classifiers inherently bias toward predicting non-fatal outcomes to minimize global error rates. Foundational techniques like SMOTE (Synthetic Minority Over-sampling Technique) \cite{chawla2002} resolve this by synthesizing artificial minority samples within the feature space.
+
+The necessity of imbalance correction in crash severity prediction is well-documented \cite{amiri2025,bazarnovi2024,fiorentini2020}. Studies consistently validate that applying SMOTE or similar resampling strategies prevents minority class starvation \cite{jeong2018,ogungbire2024}. Advanced treatments combine resampling with ensemble bagging or specialized loss functions to further stabilize classification \cite{mohammadpour2023,niyogisubizo2023}. To establish a robust evaluation baseline and prevent severe class bias in our own spatial framework, we implemented a strict stratification and binary balancing protocol that consolidates collision outcomes into a symmetrical Fatal versus Non-Fatal paradigm prior to spatial feature extraction.
+
+
+\section{Methodology}
+
+\subsection{Data and Preprocessing}
+
+We conducted our analysis on a United Kingdom traffic accident dataset, stored as \url{UK_accidents_balanced.csv}. The raw dataset contained 289,444 samples across 44 features.
+
+To frame the problem as binary classification, we restructured the original \url{collision_severity} target variable (which coded 1 for Fatal, 2 for Serious, and 3 for Slight). We merged the Serious and Slight categories into a single Non-Fatal class (labeled 0). This transformation yielded a perfectly balanced dataset containing exactly 144,722 Fatal samples and 144,722 Non-Fatal samples.
+
+During preprocessing, we immediately stripped leak-prone identifiers such as \url{enhanced_severity_collision}, \url{collision_injury_based}, and \url{collision_index} to prevent data leakage. We imputed missing numerical values with the median, while assigning the explicit label "missing" to empty categorical fields, followed by standard label encoding. Spatial coordinates (latitude and longitude) were missing in approximately 54\% of records and were handled separately by assigning a sentinel value. We then partitioned the data into a training set of 231,555 samples and a holdout test set of 57,889 samples using an 80:20 stratified split based on the target variable.
+
+\subsection{Spatial Feature Engineering}
+
+We wanted to capture how physical location influences accident severity. To do this, we extracted spatial features directly from the \url{latitude} and \url{longitude} columns. We quickly encountered a data quality issue: approximately 54\% of the coordinate records were missing. Rather than attempting a complex imputation that might artificially distort the spatial distribution, we assigned a clear sentinel value of \url{-1} or "unknown" to these missing entries.
+
+From the available coordinates, we engineered several new spatial dimensions (illustrated in Fig. \ref{fig:fig01}):
+\begin{itemize}
+\item \url{spatial_cluster}: We ran a KMeans algorithm (k=20) on the coordinates. Crucially, we fitted the KMeans model strictly on the training set to prevent information bleeding into the test data.
+\item \url{grid_region_id}: We mapped coordinates to a static 0.5°×0.5° latitude/longitude grid.
+\item \url{cluster_density}: We calculated the proportion of training samples falling into each spatial cluster to proxy regional traffic density.
+\item \url{dist_to_nearest_city_km} and \url{nearest_city_zone}: We computed the Haversine distance to the closest of eight major UK cities and identified that specific metropolitan zone.
+\end{itemize}
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{figures/fig01_spatial_clusters.pdf}
+    \caption{\textit{Distribution of Spatial Clusters Across the UK.} Scatter plot mapping the 20 clusters derived via KMeans clustering on available geographic coordinates ($k=20$). Missing coordinates were excluded from this clustering process.}
+    \label{fig:fig01}
+\end{figure}
+
+\subsection{Model Training and Evaluation}
+
+We evaluated five classification models to establish a performance baseline for accident prediction:
+\begin{itemize}
+\item Logistic Regression
+\item Random Forest
+\item XGBoost
+\item LightGBM
+\item CatBoost
+\end{itemize}
+
+Because CatBoost emerged as a strong candidate during baseline testing, we selected it as the foundation for our enhanced framework. We leveraged the library's native handling of categorical data by passing the categorical column names directly to the \url{cat_features} parameter. This directs CatBoost to calculate target statistics rather than relying on our naive integer encoding. We extracted a 15\% validation subset from the training data and applied early stopping with a 50-round patience threshold to combat overfitting. Finally, we performed minor hyperparameter tuning across \url{depth}, \url{learning_rate}, and \url{l2_leaf_reg}.
+
+We measured model performance using Accuracy, Recall, Precision, F1-Macro, and the Receiver Operating Characteristic Area Under the Curve (ROC-AUC). We also recorded training and inference times to quantify the computational trade-offs required by the spatial feature engineering process.
+
+
+\section{Experiments \& Results}
+\label{sec:experiments}
+
+We executed a two-stage experimental pipeline: first benchmarking the five standard classifiers without spatial data, and then performing an ablation study on the CatBoost framework to isolate the impact of our engineered spatial features.
+
+\subsection{Baseline Model Performance}
+
+Table \ref{tab:baseline} details the predictive results of the five baseline models trained exclusively on the raw, non-spatial feature set. The modern Gradient Boosted Decision Trees (CatBoost, XGBoost, and LightGBM) outperformed the linear Logistic Regression baseline, establishing a roughly 6\% advantage in raw accuracy and an 0.08 margin in ROC-AUC. CatBoost secured the highest overall ranking with an ROC-AUC of 0.8132. To verify stability, we ran a 5-fold cross-validation routine on the CatBoost baseline. The model returned a mean ROC-AUC of 0.8119 with a tight standard deviation of ±0.0019.
+
+\begin{table}[ht]
+\centering
+\caption{Baseline model performance comparison}
+\label{tab:baseline}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Model} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{ROC-AUC} & \textbf{Time (s)} \\
+\midrule
+CatBoost & 0.7360 & 0.7271 & 0.7555 & 0.7410 & 0.8132 & 41.88 \\
+XGBoost & 0.7358 & 0.7277 & 0.7537 & 0.7404 & 0.8130 & 16.48 \\
+LightGBM & 0.7351 & 0.7262 & 0.7546 & 0.7401 & 0.8124 & 14.30 \\
+Random Forest & 0.7300 & 0.7220 & 0.7480 & 0.7348 & 0.8066 & 121.81 \\
+Logistic Regression & 0.6752 & 0.6834 & 0.6526 & 0.6677 & 0.7368 & 302.01 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Ablation Study}
+
+We then ran an ablation sequence to isolate what the spatial features actually added to the model. Table \ref{tab:ablation} presents three CatBoost variants: the raw baseline, a version injected with the new spatial features, and a finalized version that added specific hyperparameter tuning. We expected the spatial data to push the model's predictive boundary. Instead, the metrics showed negligible change. Introducing the spatial variables (Model 2) alongside parameter tuning (Model 3) lifted the ROC-AUC from 0.8132 only to 0.8136. Simultaneously, the computational cost increased substantially, pushing training times from roughly 42 seconds to almost 280 seconds (detailed further in Fig. \ref{fig:fig02}, Fig. \ref{fig:fig03}, and Fig. \ref{fig:fig04}).
+
+\begin{table}[ht]
+\centering
+\caption{CatBoost ablation study}
+\label{tab:ablation}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Model} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{ROC-AUC} & \textbf{Time (s)} \\
+\midrule
+1. Baseline CatBoost & 0.7360 & 0.7271 & 0.7555 & 0.7410 & 0.8132 & 41.88 \\
+2. CatBoost + Spatial Features & 0.7350 & 0.7262 & 0.7542 & 0.7400 & 0.8132 & 169.05 \\
+3. Final Improved CatBoost & 0.7362 & 0.7278 & 0.7547 & 0.7410 & 0.8136 & 279.67 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.95\columnwidth]{figures/fig02_performance_metrics.pdf}
+    \caption{\textit{Performance Comparison of Baseline and Final Improved CatBoost Models.} The panels display the Receiver Operating Characteristic (ROC) curve (left), Precision-Recall curve (center), and the Confusion Matrix for the Final Improved CatBoost (right). Minor improvements are visible in the ROC AUC, though not statistically significant.}
+    \label{fig:fig02}
+\end{figure}
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{figures/fig03_feature_importance.pdf}
+    \caption{\textit{Top 20 Features by Native CatBoost Importance.} Feature importance scores for the Final Improved CatBoost model, highlighting the dominance of variables such as number of vehicles, number of casualties, and speed limit. Engineered spatial features contribute relatively little to the model's predictive power.}
+    \label{fig:fig03}
+\end{figure}
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{figures/fig04_shap_summary.pdf}
+    \caption{\textit{SHAP Summary Plot for the Final Improved CatBoost.} The plot illustrates the directional impact of features on crash severity prediction. Each dot represents a single prediction; color indicates the feature's value (e.g., higher values in red), while horizontal position shows the impact on the model output (SHAP value).}
+    \label{fig:fig04}
+\end{figure}
+
+\subsection{Statistical Significance}
+
+To determine if this marginal improvement was statistically meaningful, we applied McNemar's test to compare the predictions of the Baseline and the Final Improved models directly on the test set. We found 795 instances where only the baseline predicted correctly, compared to 808 instances where only the improved model predicted correctly. The resulting chi-square statistic of 0.0898 yielded a p-value of 0.7644. We followed this with a paired t-test on the cross-validation ROC-AUC scores, which returned a p-value of 0.3099. We therefore conclude that adding explicit spatial features to this specific dataset produced no statistically significant improvement at the 0.05 alpha level.
+
+
+\FloatBarrier
+\section{Discussion}
+
+Traffic collision severity varies wildly across different geographies. A crash in a rural zone far from emergency medical services carries a different fatality risk profile than a low-speed collision in a dense urban grid. We designed the spatial feature engineering pipeline specifically to capture this geographic variance. By feeding the model distinct coordinate clusters (\url{spatial_cluster}) and exact distances to major cities (\url{dist_to_nearest_city_km}), we expected CatBoost's target-statistic engine to map specific geographic zones to their underlying empirical fatality rates. The results entirely rejected our hypothesis. As the statistical tests in Section \ref{sec:experiments} demonstrated, the spatial features failed to improve the model's predictive power. 
+
+We attribute this failure to two overlapping data realities. First, the dataset suffers from severe coordinate sparsity. With 54\% of the geographic data missing and masked by a sentinel value, the spatial signal became heavily diluted. The model likely learned to ignore the spatial clusters because they were absent for more than half the training examples. 
+
+Second, the raw dataset already contained variables like \url{police_force}, \url{urban_or_rural_area}, and \url{speed_limit}. Our results suggest that these existing administrative and environmental descriptors already act as highly efficient spatial proxies. Once the model splits a decision tree on a 70-mph rural road governed by a specific regional police force, it has already effectively localized the accident. Feeding it the exact latitude and longitude of that road provides redundant information. 
+
+While the engineered spatial features did not boost predictive accuracy, this negative result clarifies a practical engineering constraint. Before researchers invest massive computational overhead into calculating Haversine distances and KMeans clusters for traffic data, they must ensure the raw geographic data is nearly complete. If half the coordinates are missing, standard administrative variables provide a perfectly adequate spatial proxy.
+
+
+\FloatBarrier
+\section{Conclusion}
+
+We developed and evaluated a machine learning pipeline to predict traffic accident severity across the United Kingdom, specifically attempting to improve performance by engineering explicit spatial risk features. Our benchmarking confirmed that modern Gradient Boosted Decision Trees (CatBoost, XGBoost, and LightGBM) outperformed linear models and simple decision trees for this specific collision data. CatBoost handled the dataset's high-cardinality categorical variables particularly well. Yet our core experiment yielded a clear negative result: injecting explicit spatial clusters and city-distance metrics into the model failed to generate any statistically significant performance gains. Extensive missing coordinate data (54\%) crippled the spatial signal, while existing variables like speed limits and administrative zones already captured the necessary geographic context.
+
+For traffic safety authorities allocating resources, this suggests that extracting complex spatial geometries from crash records is unnecessary if those records already contain basic administrative and roadway descriptors. Future research should revisit this spatial framework using datasets with near-total coordinate completeness. We suspect that combining precise, unbroken spatial data with temporal variables, or mining the raw textual narratives from police crash reports, could eventually unlock the predictive gains we failed to realize here.
+
+
+\begin{thebibliography}{8}
+\bibitem{amiri2025}
+Mohammad Amin Amiri, Saeid Afshari, Alì Soltani: Machine learning approaches to traffic accident severity prediction: Addressing class imbalance. \textit{Machine Learning with Applications}. 2025. 
+
+\bibitem{bazarnovi2024}
+Sadjad Bazarnovi, Abolfazl Mohammadian: Addressing imbalanced data in predicting injury severity after traffic crashes: A comparative analysis of machine learning models. \textit{Procedia Computer Science}. 2024. 
+
+\bibitem{boulieri2016}
+Areti Boulieri, Silvia Liverani, Kees de Hoogh, Marta Blangiardo: A Space–Time Multivariate Bayesian Model to Analyse Road Traffic Accidents by Severity. \textit{Journal of the Royal Statistical Society Series A (Statistics in Society)}. 2016. 
+
+\bibitem{chawla2002}
+Nitesh V. Chawla, Kevin W. Bowyer, Lawrence Hall, W. Philip Kegelmeyer: SMOTE: Synthetic Minority Over-sampling Technique. \textit{Journal of Artificial Intelligence Research}. 2002. 
+
+\bibitem{chen2016}
+Tianqi Chen, Carlos Guestrin: XGBoost. \textit{}. 2016. 
+
+\bibitem{chen2025}
+Fei Chen, Xiang Qun Liu, Jian Yang, Xu Kang Liu, Jing Hui, Jia Chen, Hua Yu Xiao: Traffic accident severity prediction based on an enhanced MSCPO-XGBoost hybrid model. \textit{Scientific Reports}. 2025. 
+
+\bibitem{diao2019}
+Zulong Diao, Xin Wang, Dafang Zhang, Yingru Liu, Kun Xie, Shaoyao He: Dynamic Spatial-Temporal Graph Convolutional Neural Networks for Traffic Forecasting. \textit{Proceedings of the AAAI Conference on Artificial Intelligence}. 2019. 
+
+\bibitem{fiorentini2020}
+Nicholas Fiorentini, Massimo Losa: Handling Imbalanced Data in Road Crash Severity Prediction by Machine Learning Algorithms. \textit{Infrastructures}. 2020. 
+
+\bibitem{guo2021}
+Manze Guo, Zhenzhou Yuan, Bruce N. Janson, Peng Yong-xin, Yang Yang, Wencheng Wang: Older Pedestrian Traffic Crashes Severity Analysis Based on an Emerging Machine Learning XGBoost. \textit{Sustainability}. 2021. 
+
+\bibitem{jeong2018}
+Heejin Jeong, Youngchan Jang, Patrick Bowman, Neda Masoud: Classification of motor vehicle crash injury severity: A hybrid approach for imbalanced data. \textit{Accident Analysis \& Prevention}. 2018. 
+
+\bibitem{kazmi2020}
+Syed Saqib Ali Kazmi, Mehreen Ahmed, Rafia Mumtaz, Zahid Anwar: Spatiotemporal Clustering and Analysis of Road Accident Hotspots by Exploiting GIS Technology and Kernel Density Estimation. \textit{The Computer Journal}. 2020. 
+
+\bibitem{ke2017}
+Guolin Ke, Qi Meng, Thomas Finley, Taifeng Wang, Wei Chen, Weidong Ma, Qiwei Ye, Tie‐Yan Liu: LightGBM: A Highly Efficient Gradient Boosting Decision Tree. \textit{HAL (Le Centre pour la Communication Scientifique Directe)}. 2017.
+
+\bibitem{lee2020}
+Hyun-Mi Lee, Gyoseok JEON, Jeong-Ah Jang: Predicting of the Severity of Car Traffic Accidents on a Highway Using Light Gradient Boosting Model. \textit{The Journal of the Korea institute of electronic communication sciences}. 2020. 
+
+\bibitem{li2022}
+Kun Li, Haocheng Xu, Xiao Liu: Analysis and visualization of accidents severity based on LightGBM-TPE. \textit{Chaos Solitons \& Fractals}. 2022. 
+
+\bibitem{mohammadpour2023}
+Seyed Iman Mohammadpour, Majid Khedmati, Mohammad Javad Hassan Zada: Classification of truck-involved crash severity: Dealing with missing, imbalanced, and high dimensional safety data. \textit{PLoS ONE}. 2023. 
+
+\bibitem{mostafa2025}
+Ayman Mohamed Mostafa, Bader Aldughayfiq, Mayada Tarek, Alaa Alaerjan, Hisham Allahem, Murtada K. Elbashir, Mohamed Ezz, Eslam Hamouda: AI-based prediction of traffic crash severity for improving road safety and transportation efficiency. \textit{Scientific Reports}. 2025. 
+
+\bibitem{niyogisubizo2023}
+Jovial Niyogisubizo, Lyuchao Liao, Fumin Zou, Guangjie Han, Eric Nziyumva, Ben Li, Yuyuan Lin: Predicting traffic crash severity using hybrid of balanced bagging classification and light gradient boosting machine. \textit{Intelligent Data Analysis}. 2023. 
+
+\bibitem{obasi2023}
+Izuchukwu Chukwuma Obasi, Chizubem Benson: Evaluating the effectiveness of machine learning techniques in forecasting the severity of traffic accidents. \textit{Heliyon}. 2023. 
+
+\bibitem{ogungbire2024}
+Abimbola Ogungbire, Srinivas S. Pulugurtha: Effectiveness of Data Imbalance Treatment in Weather-Related Crash Severity Analysis. \textit{Transportation Research Record Journal of the Transportation Research Board}. 2024. 
+
+\bibitem{pradhan2019}
+Biswajeet Pradhan, Maher Ibrahim Sameen: Predicting Injury Severity of Road Traffic Accidents Using a Hybrid Extreme Gradient Boosting and Deep Neural Network Approach. \textit{Advances in Science, Technology \& Innovation/Advances in science, technology \& innovation}. 2019. 
+
+\bibitem{prokhorenkova2017}
+Liudmila Prokhorenkova, Gleb Gusev, Aleksandr Vorobev, Anna Veronika Dorogush, Andrey Gulin: CatBoost: unbiased boosting with categorical features. \textit{arXiv (Cornell University)}. 2017. 
+
+\bibitem{shao2022}
+Zezhi Shao, Zhao Zhang, Wei Wei, Fei Wang, Yongjun Xu, Xin Cao, Christian S. Jensen: Decoupled dynamic spatial-temporal graph neural network for traffic forecasting. \textit{Proceedings of the VLDB Endowment}. 2022. 
+
+\bibitem{tang2025}
+J. K. K. Tang, Yao Zhi Huang, Dingli Liu, Liuyuan Xiong, Rongwei Bu: Research on Traffic Accident Severity Level Prediction Model Based on Improved Machine Learning. \textit{Systems}. 2025. 
+
+\bibitem{wu2021}
+Shubo Wu, Quan Yuan, Zhongwei Yan, Qing Xu: Analyzing Accident Injury Severity via an Extreme Gradient Boosting (XGBoost) Model. \textit{Journal of Advanced Transportation}. 2021. 
+
+\bibitem{yang2022}
+Yang Yang, Kun Wang, Zhenzhou Yuan, Dan Liu: Predicting Freeway Traffic Crash Severity Using XGBoost-Bayesian Network Model with Consideration of Features Interaction. \textit{Journal of Advanced Transportation}. 2022. 
+
+\end{thebibliography}
+\end{document}
