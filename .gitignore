@@ -26,3 +26,14 @@ dataset/
 catboost_info/
 llncs/
 llncs.zip
+
+# Unrelated Python files & Drafts
+*.py
+!generate_tex.py
+!generate_figures.py
+*.txt
+*.json
+draft/
+draft_en/
+UK_accidents.md
+UK_accidents_files/
